@@ -1,0 +1,57 @@
+---
+title: "Bike Sharing EDA"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![Bike Rack](bike6.jpg)
+## Goal
+Explore historical bike trip data to identify key metrics and trends to drive improvements to the company’s marketing strategy.
+
+## Background
+Consider a fictitious bike-share company in Chicago. The director
+of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, it is required to understand how casual riders and annual members use the company's bikes differently. From these insights, a new marketing strategy can be designed to convert casual riders into annual members. Company executives must approve any recommendations, so they must be backed up with compelling data insights and professional data visualizations.
+
+## Methodology
+We started by downloading the public data sets from the AWS S3 bucket. Since each data set is a zip file, we then used 7z to unzip the csv files to our project/data folder. We would like to read in all of the CSV files inside the directory and build one large data set by merging each of the smaller data sets together as diagrammed below.
+![Read and Combine](map_dfr.png)
+
+At this point, we encounter the first problem in our data: in some files, the start_station_id and end_station_id fields are numeric (dbl) but in others, they are alphanumeric (chr). So before combining them, we have to coerce those two columns to be chr for all imported files. This results in a large data set of 13,335,058 rows. The data format is long, so we can now start adding columns representing calculated values of interest to our analysis.
+
+
+
+
+## Results
+In the end, we went back to our single-file implementation (main.py) and used *auto-py-to-exe* to build a stand-alone executable file that users could download to the test stand machine and run to decompose the .mdb file into its constituent CSV data logs. This executable worked perfectly on different machines, transforming TestStand Database files into their component CSV data logs.
+
+## Dependencies
+NOTE: Python packages should be installed with `poetry install` command for current pyproject.toml
+
+[tool.poetry.dependencies]
+
+python = "^3.10"
+
+pyodbc = "^4.0.35"
+
+pandas = "^2.0.0"
+
+## Including Code
+
+You can include R code in the document as follows:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
