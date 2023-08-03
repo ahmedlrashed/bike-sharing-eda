@@ -1,7 +1,6 @@
 library(data.table)
 library(tidyverse)  # need purrr and readr functions
 library(lubridate)  # dealing with date formats
-library(fs)         # file system functions
 
 # Declare target working directory
 data_dir <- "data"

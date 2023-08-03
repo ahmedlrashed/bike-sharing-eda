@@ -1,10 +1,7 @@
 Bike Sharing EDA
 ================
 
-<figure>
-<img src="bike6.jpg" alt="Bike Rack" />
-<figcaption aria-hidden="true">Bike Rack</figcaption>
-</figure>
+![](bike6.jpg)
 
 ## Goal
 
@@ -24,73 +21,58 @@ with compelling data insights and professional data visualizations.
 
 ## Methodology
 
-### 0-extract-data.R
+#### 0-extract-data.R
 
 We started by downloading the public data sets from the AWS S3 bucket.
 We choose the latest complete year of data, which is from January 2022
 (202201) to December 2022 (202212). Since each data set is a zip file,
-we created a script to generate scrape and unzip the csv files to our
-project’s data folder.
+we created a script to scrape and unzip the csv files to our project’s
+data folder.
 
-### 1-load-data.R
+#### 1-load-data.R
 
 The next step is to read in all of the CSV files inside the directory
 and build one large data set by merging each of the smaller data sets
-together as diagrammed below. ![Read and Combine](map_dfr.png) Since we
+together as diagrammed below. ![Read and Combine](map_dfr.png)Since we
 have a particularly large number of files, a loop can take some time.
 Therefore, it is advantageous to use the fread() function from the
 data.table package. This function is highly optimized and is much
 quicker than other functions for reading in large data files.
 
-### 2-clean-data.R
+#### 2-transform-data.R
 
 At this point, our combined data set consists of 13 columns of 5,667,717
 rows. The data format is long, so we can now start adding columns
 representing calculated values of interest to our analysis.
 
+There are a few problems we will need to fix:
+
+- The “member_casual” column is the <chr> type.We will need to change
+  that to the <factor> type so we can easily create plots that split
+  along that category metric.
+
+- The data can only be aggregated at the ride-level, which is too
+  granular. We will want to add some additional columns of data – such
+  as day, month, year – that provide additional opportunities to
+  aggregate the data.
+
+- We will want to add a calculated field “ride_length” to the entire
+  data frame for analysis.
+
 ## Results
 
-In the end, we went back to our single-file implementation (main.py) and
-used *auto-py-to-exe* to build a stand-alone executable file that users
-could download to the test stand machine and run to decompose the .mdb
-file into its constituent CSV data logs. This executable worked
-perfectly on different machines, transforming TestStand Database files
-into their component CSV data logs.
+Under construction. . .
 
 ## Dependencies
 
-NOTE: Python packages should be installed with `poetry install` command
-for current pyproject.toml
+**NOTE: Install packages only run on first call**
 
-\[tool.poetry.dependencies\]
+This list of commands in located in the config.R file.
 
-python = “^3.10”
+install.packages(“archive”)
 
-pyodbc = “^4.0.35”
+install.packages(“lubridate”)
 
-pandas = “^2.0.0”
+install.packages(“data.table”)
 
-## Including Code
-
-You can include R code in the document as follows:
-
-``` r
-summary(cars)
-```
-
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
-
-## Including Plots
-
-You can also embed plots, for example:
-
-![](README_files/figure-gfm/pressure-1.png)<!-- -->
-
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+install.packages(“tidyverse”)
