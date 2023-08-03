@@ -1,11 +1,6 @@
-# Install packages
-install.packages(c("tidyverse", "fs"))
-
 library(tidyverse)  # need purrr and readr functions
 library(lubridate)  # dealing with date formats
-library(ggplot2)    # visualize data
 library(fs)         # file system functions
-library(archive)    # scrape and unzip data from AWS bucket
 
 data_dir <- "data"
 
