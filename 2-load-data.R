@@ -1,11 +1,15 @@
+#===============================#
+# STEP 2: LOAD AND COMBINE DATA #
+#===============================#
+
 library(data.table)
-library(tidyverse)  # need purrr and readr functions
-library(lubridate)  # dealing with date formats
+library(tidyverse)
+library(lubridate)
 
 # Declare target working directory
 data_dir <- "data"
 
-# Create a list of the files from our target directory
+# Create a list of the files with full filepaths from our target directory
 file_list <- list.files(path=data_dir, pattern = ".csv", full.names = TRUE)
 
 # Initiate a blank data frame
