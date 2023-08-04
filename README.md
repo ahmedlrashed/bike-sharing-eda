@@ -1,7 +1,7 @@
 Bike Sharing EDA
 ================
 
-![](figs\bike6.jpg)
+![](figs/bike6.jpg)
 
 ## Goal
 
@@ -33,7 +33,7 @@ data folder.
 
 The next step is to read in all of the CSV files inside the directory
 and build one large data set by merging each of the smaller data sets
-together as diagrammed below. ![Read and Combine](figs\map_dfr.png)
+together as diagrammed below. ![Read and Combine](figs/map_dfr.png)
 
 Since we have a particularly large number of files, a loop can take some
 time. Therefore, it is advantageous to use the fread() function from the
